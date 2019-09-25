@@ -1,0 +1,39 @@
+<!--pages/home/home.wxml-->
+
+<view>
+  <text>pages/home/home.wxml</text>
+  <view>
+    <text>{{count}}</text>
+    <progress percent="50"></progress>
+    <icon type="search"></icon>
+    <rich-text>wo</rich-text>
+    <button type="primary">按钮</button>
+    <checkbox-group bindchange="changecheckbox">
+      <checkbox>1</checkbox>
+      <checkbox disabled="diabled">2</checkbox>
+      <checkbox>3</checkbox>
+    </checkbox-group>
+    <input value="名称" class="inp"></input>
+    <picker>底部弹起的选择器</picker>
+    <slider>5</slider>
+    <switch></switch>
+  </view>
+  <view class="btn-area">
+      <navigator url="/pages/cart/cart" hover-class="navigator-hover">跳转到新页面</navigator>
+      <navigator url="/pages/find/find"  hover-class="navigator-hover">在当前页打开</navigator>
+      <navigator url="/pages/index/index" hover-class="navigator-hover">切换 Tab</navigator>
+  </view>
+  <swiper indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" width="355" height="150"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <button bindtap="changeIndicatorDots"> indicator-dots </button>
+  <button bindtap="changeAutoplay"> autoplay </button>
+  <slider bindchange="intervalChange" show-value min="500" max="2000"/>
+  <slider bindchange="durationChange" show-value min="1000" max="10000"/>
+</view>
+
