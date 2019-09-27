@@ -13,4 +13,7 @@
   <view>
     <text bindtap="countAdd" class="user-motto">{{msg}} / {{count}}</text>
   </view>
+  <view>
+    <button bindtap="gotoHome" type="primary">来日方长</button>
+  </view>
 </view>

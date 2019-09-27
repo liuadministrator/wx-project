@@ -17,6 +17,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  gotoHome(){
+    wx.switchTab({
+      url:"../home/home"
+    })
+  },
   countAdd(){
     this.setData({
       count:++this.data.count

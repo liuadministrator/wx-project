@@ -1,0 +1,6 @@
+<template name="like">
+  <view>
+    <view>names === {{names}}</view>
+    <view>count === {{count}}</view>
+  </view>
+</template>

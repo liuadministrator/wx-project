@@ -1,0 +1,10 @@
+<view style="border:2px solid #0ff">
+  <view>demo - demo - component 组件</view>
+  <Swipe/>
+  <view bindtap="countplus" data-id="100"> count === {{count}}</view>
+  <view>properties === {{word}} / {{hi}} / {{msg}}</view>
+  <view>
+    <button bindtap="changeparent" type="warn">子组件通过自定义事件去修改父组件</button>
+  </view>
+</view>
+

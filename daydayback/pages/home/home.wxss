@@ -1,1 +1,11 @@
 /* pages/home/home.wxss */
+.rpxs{
+  width:200rpx;
+  height: 200rpx;
+  background: red;
+}
+.label-h{
+  width:600rpx;
+  height: 100rpx;
+  border:"1px solid #eee";
+}

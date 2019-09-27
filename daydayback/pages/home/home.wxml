@@ -3,37 +3,69 @@
 <view>
   <text>pages/home/home.wxml</text>
   <view>
-    <text>{{count}}</text>
-    <progress percent="50"></progress>
-    <icon type="search"></icon>
-    <rich-text>wo</rich-text>
-    <button type="primary">按钮</button>
-    <checkbox-group bindchange="changecheckbox">
-      <checkbox>1</checkbox>
-      <checkbox disabled="diabled">2</checkbox>
-      <checkbox>3</checkbox>
-    </checkbox-group>
-    <input value="名称" class="inp"></input>
+    <text>{{ count }} / {{num}}</text>
+    <Demo bindchangenumber="getNewnumber" word="{{word}}" hi="{{hi}}" msg="Are you OK?"/>
+    <button bindtap="changeNum" type="warn" size="mini">按钮</button>
+    <input bindinput="getWord" value="123456" class="inp"></input>
+    <text>{{flag?'国庆七日游':'国庆敲七天代码'}}</text>
     <picker>底部弹起的选择器</picker>
-    <slider>5</slider>
-    <switch></switch>
+    <switch bindchange="changeCheck" checked="{{flag}}"></switch>
   </view>
-  <view class="btn-area">
-      <navigator url="/pages/cart/cart" hover-class="navigator-hover">跳转到新页面</navigator>
-      <navigator url="/pages/find/find"  hover-class="navigator-hover">在当前页打开</navigator>
-      <navigator url="/pages/index/index" hover-class="navigator-hover">切换 Tab</navigator>
-  </view>
-  <swiper indicator-dots="{{indicatorDots}}"
-    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{imgUrls}}">
+  <view bindtap="getdetail" class="opt" id="{{id}}" data-hi="{{hi}}" data-flag="{{flag}}">{{word}} / {{id}}</view>
+  <swiper 
+  indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" 
+  interval="{{interval}}" 
+  duration="{{duration}}"
+  wx:if="{{flag}}"
+  >
+    <block wx:for="{{imgUrls}}" wx:key="{{item.index}}">
       <swiper-item>
         <image src="{{item}}" class="slide-image" width="355" height="150"/>
       </swiper-item>
     </block>
   </swiper>
-  <button bindtap="changeIndicatorDots"> indicator-dots </button>
-  <button bindtap="changeAutoplay"> autoplay </button>
-  <slider bindchange="intervalChange" show-value min="500" max="2000"/>
-  <slider bindchange="durationChange" show-value min="1000" max="10000"/>
+  <view wx:else>
+     <text>好好学习，天天向上！！！</text>
+  </view>
+  <view hidden="{{flag}}">hidden 就简单的多，组件始终会被渲染，只是简单的控制显示与隐藏</view>
+  <view wx:for="{{todos}}" wx:key="{{index}}">
+    {{item.name}} / {{item.age}} / {{item.word}} / {{index}}
+  </view>
+  <view>
+    <button type="primary" id="tapTest" data-word="{{word}}" data-id="weChat" bindtap="tapName">Click me!</button>
+    <view bindtap="parent">
+      <view style="color:green" bindtap="childOne">
+        冒泡事件：当一个组件上的事件被触发后，该事件会向父节点传递。
+      </view>
+      <view style="color:blue" catchtap="childTwo">
+        非冒泡事件：当一个组件上的事件被触发后，该事件不会向父节点传递。
+      </view>
+      <view style="color:red">
+        bind事件绑定不会阻止冒泡事件向上冒泡，catch事件绑定可以阻止冒泡事件向上冒泡
+      </view>
+    </view>
+  </view>
+  <view class="rpxs"></view>
+  <template name="users">
+    <view>
+      <view>username === {{username}}</view>
+      <view>salary === {{salary}}</view>
+      <view>address === {{address}}</view>
+    </view>
+  </template>
+  <template is="users" data="{{ ...userData }}"></template>
+  <import src="../../tpls/like.wxml" />
+  <template is="like" data="{{names:'xiaobu',count:'1905'}}"></template>
+  <All/>
+  <button type="primary" bindtap="openModal">打开 modal</button>
+  <button type="warn" bindtap="openactionsheet">打开 actionsheet</button>
+
+  <import src="/tpls/actionsheet.wxml" />
+  <template is="actionsheet" data="{{ ...actionData }}"></template>
+  <button type="primary" bindtap="openmyAction">打开 自定义 action</button>
+
+  <import src="/tpls/login.wxml" />
+  <template is="login" data="{{...loginData}}"></template>
 </view>
 
